@@ -7,7 +7,7 @@ HEADER = {"Authorization": "Token b1bb35a1ce4c76b8d23cef79b02958d2d1a555ee"}
 
 def list(request):
     if request.method == "GET":
-        response = requests.get(url="http://localhost:8080/api/v1/products/", headers=HEADER)
+        response = requests.get(url="http://backend:8080/api/v1/products/", headers=HEADER)
         if response.status_code == 200:
             print('lissssst', response.json()['results'])
             return render(request, "list.html", {'products':response.json()['results']})
@@ -16,7 +16,7 @@ def list(request):
 def detail(request, **kwargs):
     if request.method == "GET":
         id = kwargs.get('pk')
-        response = requests.get(url=f"http://localhost:8080/api/v1/products/{id}/", headers=HEADER)
+        response = requests.get(url=f"http://backend:8080/api/v1/products/{id}/", headers=HEADER)
         if response.status_code == 200:
             return render(request, "detail.html", {'product':response.json()})
 
@@ -34,7 +34,7 @@ def create(request):
             "value": value,
         }
 
-        response = requests.post(url="http://localhost:8080/api/v1/products/", headers=HEADER, data=product)
+        response = requests.post(url="http://backend:8080/api/v1/products/", headers=HEADER, data=product)
         if response.status_code == 201:
             return redirect('/products/list')
 
@@ -45,7 +45,7 @@ def create(request):
 def update(request, **kwargs):
     id = kwargs.get('pk')
     if request.method == "GET":
-        response = requests.get(url=f"http://localhost:8080/api/v1/products/{id}/", headers=HEADER)
+        response = requests.get(url=f"http://backend:8080/api/v1/products/{id}/", headers=HEADER)
         if response.status_code == 200:
             return render(request, "update.html", {'product':response.json()})
     elif request.method == "POST":
@@ -57,7 +57,7 @@ def update(request, **kwargs):
             "description": description,
             "value": value,
         }
-        response = requests.put(url=f"http://localhost:8080/api/v1/products/{id}/", headers=HEADER, data=product)
+        response = requests.put(url=f"http://backend:8080/api/v1/products/{id}/", headers=HEADER, data=product)
         if response.status_code == 200:
             return redirect('/products/list')
 
@@ -65,10 +65,10 @@ def update(request, **kwargs):
 def delete(request, **kwargs):
     id = kwargs.get('pk')
     if request.method == "GET":
-        response = requests.get(url=f"http://localhost:8080/api/v1/products/{id}/", headers=HEADER)
+        response = requests.get(url=f"http://backend:8080/api/v1/products/{id}/", headers=HEADER)
         if response.status_code == 200:
             return render(request, "delete.html", {'product':response.json()})
     elif request.method == "POST":
-        response = requests.delete(url=f"http://localhost:8080/api/v1/products/{id}/", headers=HEADER, data=None)
+        response = requests.delete(url=f"http://backend:8080/api/v1/products/{id}/", headers=HEADER, data=None)
         if response.status_code == 204:
             return redirect('/products/list')

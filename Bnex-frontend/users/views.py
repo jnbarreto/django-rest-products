@@ -26,7 +26,7 @@ def register(request):
             "confirm_password": confirmar_password,
         }
 
-        response = requests.post(url="http://localhost:8080/api/v1/auth/registration/", headers=HEADER, data=user)
+        response = requests.post(url="http://backend:8080/api/v1/auth/registration/", headers=HEADER, data=user)
         if response.status_code == 201:
             return redirect('/users/auth/sign-in')
 
@@ -41,7 +41,7 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        response = requests.post(url="http://localhost:8080/api/v1/auth/sign-in/", headers=HEADER, data={"username": username, "password": password})
+        response = requests.post(url="http://backend:8080/api/v1/auth/sign-in/", headers=HEADER, data={"username": username, "password": password})
         if response.status_code == 200:
             return redirect('/products/list')
 

@@ -15,6 +15,22 @@ services:
     depends_on:
       - postgres-database
 
+  frontend:
+    container_name: frontend
+    build:
+      context: ../Bnex-frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ../Bnex-frontend:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=core.settings
+    networks:
+      - bnex-backend-network
+    depends_on:
+      - postgres-database
+
   postgres-database:
     container_name: postgres-database
     image: postgres:14

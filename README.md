@@ -61,3 +61,27 @@ Limpar os volumes do Docker (buildar depois de rodar esse comando).
 ```
 docker system prune -fa --volumes
 ```
+### Comandos criados com taskipy para ajudar no desenvolvimento
+
+test = "docker exec backend python manage.py test"
+
+migrate = "docker exec backend python manage.py migrate"
+
+makemigrations = "docker exec backend python manage.py makemigrations"
+
+createsuperuser = "docker exec -it backend python manage.py createsuperuser"
+
+startapp = "docker exec backend python manage.py startapp {param}"
+
+ip-database = "docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgres-database"
+
+
+#### Como executar
+
+task + comando
+
+exemplo: 
+```
+task test
+```
+

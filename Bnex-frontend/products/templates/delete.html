@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+  {% block 'title' %}Deleta produto{% endblock%}
+
+  {% block 'body' %}
+   <div class="container home">
+      <div class="row">
+
+        <div class="col-sm-2">
+        </div>
+
+        <div class="col-xs-12">
+          <h2>Certaza que deseja deletar {{ product.name }} ?</h2>
+          <form action="{% url 'delete' pk=product.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit" >Deletar</button>
+            <a class="btn btn-secondary" href="{% url 'list'%}" >Cancelar</a>
+          </form>
+
+        <div class="col-xs-12">
+        </div>
+
+      </div>
+  </div>
+
+  {% endblock %}

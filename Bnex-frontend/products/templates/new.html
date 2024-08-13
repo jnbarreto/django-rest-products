@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Novo produto{% endblock%}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" >
+{% endblock 'head' %}
+
+  {% block 'body'%}
+
+<div>
+  <div class="centerized">
+        {% if messages %}
+          {% for message in messages %}
+            <section class="alert {{message.tags}}">
+              {{message}}
+            </section>
+          {% endfor %}
+        {% endif %}
+        <div class="col-xs-12">
+          <h1>Cadastre um novo produto</h1>
+        </div>
+
+        <div class="col-xs-12">
+          <form action="{% url 'create'%}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Nome</label>
+            <input
+            type="text"
+            class="form-control input-pers"
+            name="name"
+            placeholder="Digite o nome do produto"
+          /></br>
+          <label>Descrição</label>
+            <input
+            type="text"
+            class="form-control input-pers"
+            name="description"
+            placeholder="Digite uma descrição para o produto"
+          /></br>
+          <label>valor</label>
+            <input
+            type="text"
+            class="form-control input-pers"
+            name="value"
+            placeholder="Digite o valor desse produto"
+          /></br>
+            <button class="btn btn-success" type="submit">Salvar</button>
+            <a class="btn btn-secondary" href="{% url 'list'%}" >Cancelar</a>
+          </form>
+        </div>
+
+        <div class="col-xs-12">
+        </div>
+
+      </div>
+  </div>
+  {% endblock %}

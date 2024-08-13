@@ -1,0 +1,16 @@
+site_name: Products-Bnex
+# repo_url: url do git
+# repo_name: nome do repositorio
+edit_uri: tree/main/docs
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/bnex_logo.png
+  favicon: assets/bnex_icon.png
+
+markdown_extensions:
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css

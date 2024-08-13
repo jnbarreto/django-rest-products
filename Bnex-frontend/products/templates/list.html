@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}
+    Products
+{% endblock %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" >
+{% endblock 'head' %}
+
+  {% block 'body' %}
+    <div class="container home">
+      <a class="btn btn-default r">Sign Out</a>
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h1>Lista de Produtos cadastrados</h1>
+        </div>
+
+        <div class="col-xs-12">
+          <a class="btn btn-success " href="{% url 'create' %}"><i class="bi bi-plus-circle-fill"></i></a>
+        </div>
+
+        <div class="col-xs-12">
+          <ul class="list-group">
+            {% for product in products %}
+              <li class="list-group-item ">
+                <b><a href="{% url 'update' pk=product.id %}">{{ product.name }}:</a></b>
+                <a> {{product.description}}</a>
+                <a class="r" href="{% url 'detail' pk=product.id %}"><i class="bi bi-info-circle-fill"></i></a>
+                <a class="r" href="{% url 'delete' pk=product.id %}" ><i class="bi bi-trash3-fill"></i></a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+  </div>
+  {% endblock %}
+
+  {% block 'footer' %}
+    <footer class="footer mt-auto py-3">
+      <div class="containered">
+        <span class="text-muted">Gestão de Produtos 2024</span>
+      </div>
+    </footer>
+  {% endblock %}

@@ -47,6 +47,7 @@ docker compose up --build
 ```
 Se já executou a primeira vez com o ```--build``` basta rodar apenas o ```docker compose up``` e projeto já vai está rodando.
 
+Projeto Frontend link http://localhost:5000/users/auth/sign-in/
 ## Comandos Uteis
 Buildar o projeto.
 ```

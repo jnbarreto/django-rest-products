@@ -13,6 +13,7 @@ psycopg2 = "^2.9.9"
 psycopg2-binary = "^2.9.9"
 markdown = "^3.6"
 django-filter = "^24.3"
+pytest-django = "^4.8.0"
 pytest = "^8.3.2"
 
 
@@ -36,11 +37,14 @@ build-backend = "poetry.core.masonry.api"
 profile = "black"
 line_length = 79
 
+[tool.pytest]
+DJANGO_SETTINGS_MODULE = "core.settings"
+
 [tool.taskipy.tasks]
 lint = "blue . && isort . "
 lint-check = "blue --check --diff . && isort --check --diff . "
 docs = "mkdocs serve"
-pre_test = "task lint-check && task lint"
+
 test = "docker exec backend python manage.py test"
 post_test = "coverage html"
 migrate = "docker exec backend python manage.py migrate"
